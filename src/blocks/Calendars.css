@@ -1,0 +1,89 @@
+.calendar-container {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #ffffff;
+  max-width: 600px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+}
+
+.calendar-header {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.calendar-day-header {
+  font-weight: bold;
+  text-align: center;
+  color: #555;
+  transform: scale(1.04);
+}
+
+.calendar-day {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.calendar-day:hover {
+  transform: scale(1.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.calendar-day.sunday {
+  background-color: #ffe5e5;
+  color: #d9534f;
+}
+
+.calendar-day.workday {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+.hours {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+@media (min-width: 320px) and (max-width: 376px) {
+  .calendar-container {
+    padding: 18px 0 20px;
+  }
+
+  .calendar-day {
+    padding: 4px 0;
+  }
+
+  .calendar-grid {
+    gap: 5px;
+    padding: 0px 10px;
+  }
+
+  .hours {
+    font-size: 0.6rem;
+  }
+}
+
+@media (min-width: 376px) and (max-width: 426px) {
+  .calendar-day {
+    padding: 12px 0;
+  }
+
+  .calendar-grid {
+    gap: 5px;
+  }
+}
