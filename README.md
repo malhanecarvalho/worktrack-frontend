@@ -6,7 +6,7 @@
 
   
 
-<img src="../src/images/worktrack_project.png" alt="project worktrack" width="500">
+<img src="./src/images/worktrack_project.png" alt="project worktrack" width="500">
 
   
 
