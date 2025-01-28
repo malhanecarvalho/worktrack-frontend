@@ -6,7 +6,7 @@
 
   
 
-![WorkTrack Screenshot](./src/images/worktrack_project.png) 
+<img src="../work-track/src/images/worktrack_project.png" alt="project worktrack" width="500">
 
   
 
