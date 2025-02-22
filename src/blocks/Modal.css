@@ -22,6 +22,7 @@
   }
   
   .modal-header {
+    font-family: roboto;
     font-size: 1rem;
     font-weight: bold;
     margin-bottom: 20px;

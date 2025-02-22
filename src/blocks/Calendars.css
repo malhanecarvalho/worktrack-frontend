@@ -8,7 +8,20 @@
   font-family: Arial, sans-serif;
 }
 
+.calendar-month-navigation {
+  display: flex;
+  justify-content: center;
+  column-gap: 15px;
+  align-items: center;
+}
+
+.calendar-button {
+  border: none;
+  background-color: unset;
+}
+
 .calendar-header {
+  font-family: roboto;
   text-align: center;
   font-size: 1.5rem;
   font-weight: bold;
@@ -55,8 +68,9 @@
 }
 
 .hours {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   color: #888;
+  margin-top: 2px;
 }
 
 @media (min-width: 320px) and (max-width: 376px) {

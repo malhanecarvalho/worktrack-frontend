@@ -1,29 +1,16 @@
-import React, { useEffect } from "react";
-import emailjs from "@emailjs/browser";
+import React from "react";
 
-const Calendar = ({ hours, onDayClick }) => {
+const Calendar = ({ hours, onDayClick, selectedMonth, setSelectedMonth }) => {
   const renderCalendar = () => {
-    const today = new Date();
-    const year = today.getFullYear();
-    const month = today.getMonth();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const [year, month] = selectedMonth.split("-").map(Number);
+    const daysInMonth = new Date(year, month, 0).getDate();
+    const firstDayOfMonth = new Date(year, month - 1, 1).getDay();
 
     const monthNames = [
-      "Janeiro",
-      "Fevereiro",
-      "Março",
-      "Abril",
-      "Maio",
-      "Junho",
-      "Julho",
-      "Agosto",
-      "Setembro",
-      "Outubro",
-      "Novembro",
-      "Dezembro",
+      "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", 
+      "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
     ];
 
-    const firstDayOfMonth = new Date(year, month, 1).getDay();
     const days = [];
 
     for (let i = 0; i < firstDayOfMonth; i++) {
@@ -31,10 +18,8 @@ const Calendar = ({ hours, onDayClick }) => {
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
-      const date = `${year}-${String(month + 1).padStart(2, "0")}-${String(
-        day
-      ).padStart(2, "0")}`;
-      const isSunday = new Date(year, month, day).getDay() === 0;
+      const date = `${year}-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+      const isSunday = new Date(year, month - 1, day).getDay() === 0;
 
       days.push(
         <div
@@ -44,7 +29,7 @@ const Calendar = ({ hours, onDayClick }) => {
         >
           <div>{day}</div>
           <div className="hours">
-            {hours[date] ? `${hours[date]} hrs` : "---"}
+            {hours[date] ? `${hours[date]} hr` : "--"}
           </div>
         </div>
       );
@@ -52,14 +37,16 @@ const Calendar = ({ hours, onDayClick }) => {
 
     return (
       <div className="calendar-container">
-        <h2 className="calendar-header">
-          {monthNames[month]} {year}
-        </h2>
+        <div className="calendar-month-navigation">
+          <button className="calendar-button" onClick={() => changeMonth(-1)}>◀️</button>
+          <h2 className="calendar-header">
+            {monthNames[month - 1]} {year}
+          </h2>
+          <button className="calendar-button" onClick={() => changeMonth(1)}>▶️</button>
+        </div>
         <div className="calendar-grid">
           {["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"].map((d) => (
-            <div key={d} className="calendar-day-header">
-              {d}
-            </div>
+            <div key={d} className="calendar-day-header">{d}</div>
           ))}
           {days}
         </div>
@@ -67,64 +54,11 @@ const Calendar = ({ hours, onDayClick }) => {
     );
   };
 
-  const getWeeklySummary = () => {
-    const today = new Date();
-    const lastSunday = new Date(
-      today.setDate(today.getDate() - today.getDay())
-    );
-    const lastWeek = [];
-
-    for (let i = 0; i < 7; i++) {
-      const date = new Date(lastSunday);
-      date.setDate(lastSunday.getDate() + i);
-      const formattedDate = `${date.getFullYear()}-${String(
-        date.getMonth() + 1
-      ).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
-      lastWeek.push({
-        date: formattedDate,
-        hours: hours[formattedDate] || 0,
-      });
-    }
-
-    return lastWeek;
+  const changeMonth = (offset) => {
+    const [year, month] = selectedMonth.split("-").map(Number);
+    const newDate = new Date(year, month - 1 + offset, 1);
+    setSelectedMonth(`${newDate.getFullYear()}-${String(newDate.getMonth() + 1).padStart(2, "0")}`);
   };
-
-  const sendWeeklySummary = () => {
-    const summary = getWeeklySummary();
-    const formattedSummary = summary
-      .map(({ date, hours }) => `${date}: ${hours} horas`)
-      .join("\n");
-
-    const templateParams = {
-      to_name: "CJS",
-      message: formattedSummary,
-      from_name: "Sebastião Fernando",
-    };
-
-    emailjs
-      .send(
-        "service_3ndrwzp",
-        "template_ks6gyjq",
-        templateParams,
-        "vzHQwwv7kQkTWPgA0"
-      )
-      .then(
-        (response) => {
-          alert("Resumo semanal enviado com sucesso!");
-        },
-        (error) => {
-          console.error("Erro ao enviar o e-mail: ", error);
-          alert("Falha ao enviar o resumo semanal.");
-        }
-      );
-  };
-
-  useEffect(() => {
-    const today = new Date();
-    if (today.getDay() === 0) {
-      sendWeeklySummary();
-    }
-  }, [hours]);
 
   return <>{renderCalendar()}</>;
 };
