@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
 import Calendar from "../components/Calendar";
 import Modal from "../components/Modal";
+import WeeklySummary from "./WeeklySummary";
 
 const Main = () => {
   const [selectedMonth, setSelectedMonth] = useState(() => {
     const today = new Date();
-    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}`;
+    return `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(
+      2,
+      "0"
+    )}`;
   });
 
   const [hours, setHours] = useState(() => {
@@ -52,15 +56,15 @@ const Main = () => {
       <section className="page">
         <h1 className="page__title">Olá, Fernando!😊</h1>
 
-        <Calendar 
-          hours={hours} 
-          onDayClick={handleDayClick} 
+        <Calendar
+          hours={hours}
+          onDayClick={handleDayClick}
           selectedMonth={selectedMonth}
-          setSelectedMonth={setSelectedMonth} 
+          setSelectedMonth={setSelectedMonth}
         />
 
         <h2 className="page__salary">
-          Valor a receber: €{totalSalary.toFixed(2)}
+          💰 Valor a receber: €{totalSalary.toFixed(2)}
         </h2>
 
         {isModalOpen && (
@@ -72,6 +76,8 @@ const Main = () => {
             onClose={() => setIsModalOpen(false)}
           />
         )}
+
+        <WeeklySummary hours={hours} />
       </section>
     </main>
   );
