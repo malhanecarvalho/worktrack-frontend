@@ -37,7 +37,7 @@ const Main = () => {
       (sum, h) => sum + Number(h || 0),
       0
     );
-    setTotalSalary(totalHours * 9);
+    setTotalSalary(totalHours * 11);
   };
 
   const handleDayClick = (date) => {
@@ -54,7 +54,7 @@ const Main = () => {
   return (
     <main className="content">
       <section className="page">
-        <h1 className="page__title">Olá, Fernando!😊</h1>
+        <h1 className="page__title">Sebastião Fernando😎</h1>
 
         <Calendar
           hours={hours}
