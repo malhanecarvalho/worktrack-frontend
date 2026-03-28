@@ -1,0 +1,81 @@
+.weekly-summary-container {
+  text-align: center;
+  margin-top: 12px;
+}
+
+.weekly-summary-container button {
+  max-width: 290px;
+  width: 100%;
+  background-color: #f8f8ff;
+  color: #333;
+  border: none;
+  padding: 10px;
+  font-family: roboto-slab;
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.weekly-summary-container button:hover {
+  background-color: dimgray;
+  color: white;
+}
+
+.weekly-summary {
+  margin-top: 15px;
+  padding: 15px;
+  background: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.weekly-summary h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.weekly-summary ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.weekly-summary li {
+  font-size: 16px;
+  padding: 6px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.weekly-summary li:last-child {
+  font-weight: bold;
+  border-bottom: none;
+}
+
+.weekly-summary button {
+  margin-top: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  margin-right: 5px;
+}
+
+.weekly-summary button:hover {
+  background-color: #218838;
+}
+
+.weekly-summary button:last-child {
+  background-color: #dc3545;
+}
+
+.weekly-summary button:last-child:hover {
+  background-color: #c82333;
+}
